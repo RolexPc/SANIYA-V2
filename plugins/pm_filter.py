@@ -276,7 +276,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
         return
 
-settings = await get_settings(message.chat.id)
+    settings = await get_settings(message.chat.id)
     if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
     else:
