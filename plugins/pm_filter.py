@@ -33,6 +33,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
+LANGUAGES = ["malayalam", "tamil", "english", "hindi", "telugu", "kannada"]
 
 @Client.on_message(filters.command('autofilter') & filters.user(ADMINS))
 async def fil_mod(client, message): 
@@ -273,7 +274,132 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
     if not files:
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
         return
-                            
+
+settings = await get_settings(message.chat.id)
+    if 'is_shortlink' in settings.keys():
+        ENABLE_SHORTLINK = settings['is_shortlink']
+    else:
+        await save_group_settings(message.chat.id, 'is_shortlink', False)
+        ENABLE_SHORTLINK = False
+    pre = 'filep' if settings['file_secure'] else 'file'
+    if ENABLE_SHORTLINK == True:
+        btn = (
+            [
+                [
+                    InlineKeyboardButton(
+                        text=f"▫️ {get_size(file.file_size)} ⊳ {file.file_name}",
+                        url=await get_shortlink(
+                            message.chat.id,
+                            f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
+                        ),
+                    ),
+                ]
+                for file in files
+            ]
+            if settings["button"]
+            else [
+                [
+                    InlineKeyboardButton(
+                        text=f"{file.file_name}",
+                        url=await get_shortlink(
+                            message.chat.id,
+                            f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
+                        ),
+                    ),
+                    InlineKeyboardButton(
+                        text=f"{get_size(file.file_size)}",
+                        url=await get_shortlink(
+                            message.chat.id,
+                            f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
+                        ),
+                    ),
+                ]
+                for file in files
+            ]
+        )
+    elif settings["button"]:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"▫️ {get_size(file.file_size)} ⊳ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                ),
+            ]
+            for file in files
+        ]
+    else:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f'{pre}#{file.file_id}',
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'{pre}#{file.file_id}',
+                ),
+            ]
+            for file in files
+        ]
+    try:
+        if settings['auto_delete']:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
+
+        else:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
+
+    except KeyError:
+        grpid = await active_connection(str(message.from_user.id))
+        await save_group_settings(grpid, 'auto_delete', True)
+        settings = await get_settings(message.chat.id)
+        if settings['auto_delete']:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
+
+        else:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
+
+    btn.insert(0, [
+        InlineKeyboardButton("📤 Sᴇɴᴅ Aʟʟ Fɪʟᴇs Tᴏ PM 📤", callback_data=f"send_fall#files#{key}#{offset}")
+    ])
+    offset = 0
+
+    btn.append([
+        InlineKeyboardButton(
+            text="↺ ʙᴀᴄᴋ ᴛᴏ ꜰɪʟᴇs ​↻",
+            callback_data=f"next_{req}_{key}_{offset}"
+        ),
+    ])
+
+    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
+
+
 # spellcheck error fixing
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
