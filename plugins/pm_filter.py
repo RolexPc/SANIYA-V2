@@ -117,14 +117,14 @@ async def pv_filter(client, message):
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
     if int(req) not in [query.from_user.id, 0]:
-        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name),show_alert=True)
+        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     try:
         offset = int(offset)
     except:
         offset = 0
     search = BUTTONS.get(key)
     if not search:
-        await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name),show_alert=True)
+        await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
         return
 
     files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
@@ -781,16 +781,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
 
     elif query.data == "reqinfo":
-        await query.answer("⚠ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⚠\n\nᴀꜰᴛᴇʀ 10 ᴍɪɴᴜᴛᴇꜱ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴅᴇʟᴇᴛᴇᴅ\n\nɪꜰ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ꜱᴇᴇ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴍᴏᴠɪᴇ / sᴇʀɪᴇs ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ᴛʜᴇ ɴᴇxᴛ ᴘᴀɢᴇ\n\n❣ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
+        await query.answer("⚠️ 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 ⚠️\n\n𝑨𝒇𝒕𝒆𝒓 𝟓 𝑴𝒊𝒏𝒖𝒕𝒆𝒔 𝑻𝒉𝒊𝒔 𝑴𝒆𝒔𝒔𝒂𝒈𝒆 𝑾𝒆𝒍𝒍 𝑩𝒆 𝑨𝒖𝒕𝒐𝒎𝒂𝒕𝒊𝒄𝒂𝒍𝒍𝒚 𝑫𝒆𝒍𝒆𝒕𝒆𝒅\n\n𝑰𝒇 𝒀𝒐𝒖 𝑫𝒐 𝑵𝒐𝒕 𝑺𝒆𝒆 𝑻𝒉𝒆 𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒆𝒅 𝑴𝒐𝒗𝒊𝒆 / 𝑺𝒆𝒓𝒊𝒆𝒔 𝑭𝒊𝒍𝒆, 𝑳𝒐𝒐𝒌 𝑨𝒕 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑷𝒂𝒈𝒆,\n\n©️ 𝐀𝐑𝐀𝐊𝐀𝐋 𝐓𝐇𝐄𝐑𝐀𝐕𝐀𝐃 𝐌𝐎𝐕𝐈𝐄𝐒", True)
 
     elif query.data == "minfo":
-        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴀᴠᴀᴛᴀʀ: ᴛʜᴇ ᴡᴀʏ ᴏғ ᴡᴀᴛᴇʀ\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
+        await query.answer("🎯 𝐴𝑠𝑘 𝑀𝑜𝑣𝑖𝑒𝑠 𝐶𝑜𝑟𝑟𝑒𝑐𝑡 𝑆𝑝𝑒𝑙𝑙𝑖𝑛𝑔\n\n🧿 𝑫𝒐𝒏'𝒕 𝑨𝒔𝒌 𝑴𝒐𝒗𝒊𝒆𝒔 𝑻𝒉𝒐𝒔𝒆 𝑨𝒓𝒆 𝑵𝒐𝒕 𝑹𝒆𝒍𝒆𝒂𝒔𝒆𝒅 𝑰𝒏 𝑶𝒕𝒕 𝑻𝒉𝒆𝒂𝒕𝒓𝒆 𝑸𝒖𝒂𝒍𝒊𝒕𝒚 𝑨𝒗𝒂𝒊𝒍𝒂𝒃𝒍𝒆 🤧\n\n🌍 𝑭𝒐𝒓 𝑩𝒆𝒕𝒕𝒆𝒓 𝑹𝒆𝒔𝒖𝒍𝒕𝒔 :\n- 𝑴𝒐𝒗𝒊𝒆 𝑵𝒂𝒎𝒆 𝒀𝒆𝒂𝒓\n- 𝑬𝒏𝒈: 𝑳𝒆𝒐 𝟐𝟎𝟐𝟑\n\n©️ 𝐀𝐑𝐀𝐊𝐀𝐋 𝐓𝐇𝐄𝐑𝐀𝐕𝐀𝐃 𝐌𝐎𝐕𝐈𝐄𝐒", True)
 
     elif query.data == "sinfo":
-        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nꜱᴇʀɪᴇꜱ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴍᴏɴᴇʏ ʜᴇɪsᴛ S01E01\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)      
+        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nꜱᴇʀɪᴇꜱ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴍᴏɴᴇʏ ʜᴇɪsᴛ S01E01\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)      
 
     elif query.data == "tinfo":
-        await query.answer("▣ ᴛɪᴘs ▣\n\n★ ᴛʏᴘᴇ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ (ɢᴏᴏɢʟᴇ)\n\n★ ɪғ ʏᴏᴜ ɴᴏᴛ ɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇ ɪɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ᴛʜᴇɴ ᴛʜᴇ ɴᴇxᴛ sᴛᴇᴘ ɪs ᴄʟɪᴄᴋ ɴᴇxᴛ ʙᴜᴛᴛᴏɴ.\n\n★ ᴄᴏɴᴛɪɴᴜᴇ ᴛʜɪs ᴍᴇᴛʜᴏᴅ ᴛᴏ ɢᴇᴛᴛɪɴɢ ʏᴏᴜ ғɪʟᴇ\n\n❣ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄɪɴᴇᴍᴀʟᴀ. ᴄᴏᴍ", show_alert=True)
+        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n⚙ 𝐌𝐨𝐯𝐢𝐞 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐅𝐨𝐫𝐦𝐚𝐭 🧿\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\n𝑮𝒐 𝑻𝒐 𝑮𝒐𝒐𝒈𝒍𝒆 ➠ 𝑻𝒚𝒑𝒆 𝑴𝒐𝒗𝒊𝒆 𝑶𝒓 𝑺𝒆𝒓𝒊𝒆𝒔 𝑵𝒂𝒎𝒆 ➠ 𝑪𝒐𝒑𝒚 𝑪𝒐𝒓𝒓𝒆𝒄𝒕 𝑵𝒂𝒎𝒆 ➠ 𝑷𝒂𝒔𝒕𝒆 𝑻𝒉𝒊𝒔 𝑮𝒓𝒐𝒖𝒑\n\n𝑬𝑿𝑨𝑴𝑷𝑳𝑬 : 𝑳𝑬𝑶 𝟐𝟎𝟐𝟑\n\n🚯 𝑫𝒐𝒏𝒕 𝒖𝒔𝒆 ➠ ':(!,./)\n\n©️ 𝐀𝐑𝐀𝐊𝐀𝐋 𝐓𝐇𝐄𝐑𝐀𝐕𝐀𝐃 𝐌𝐎𝐕𝐈𝐄𝐒", True)
 
     elif query.data == "feng":
         await query.answer("Dᴜᴇ ᴛᴏ ᴄᴏᴘʏʀɪɢʜᴛ ᴛʜᴇ ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ғʀᴏᴍ ʜᴇʀᴇ ɪɴ 10 ᴍɪɴᴜᴛᴇs sᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀғᴛᴇʀ ᴍᴏᴠɪɴɢ ғʀᴏᴍ ʜᴇʀᴇ ᴛᴏ sᴏᴍᴇᴡʜᴇʀᴇ ᴇʟsᴇ!", show_alert=True)
