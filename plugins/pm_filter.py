@@ -1,5 +1,3 @@
-# Kanged From @TroJanZheX
-# REDIRECT added https://github.com/Joelkb
 import asyncio
 import re
 import ast
@@ -114,23 +112,19 @@ async def give_filter(client, message):
             await auto_filter(client, message)
 
 
-@Client.on_message(filters.private & filters.text & filters.incoming)
-async def pm_text(bot, message):
-    content = message.text
-    user = message.from_user.first_name
-    user_id = message.from_user.id
-    if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
-    await message.reply_text("<b>Your message has been sent to my moderators !</b>",
-                             reply_markup=InlineKeyboardMarkup(
-                                 [[
-                                     InlineKeyboardButton('📍 Mᴏᴠɪᴇ ɪs ʜᴇʀᴇ 📍', url='https://t.me/moviecafe_01')
-                                 ]]
-                             )
-                             )
-    await bot.send_message(
-        chat_id=LOG_CHANNEL,
-        text=f"<b>#PM_MSG\n\nName : {user}\n\nID : {user_id}\n\nMessage : {content}</b>"
-    )
+@Client.on_callback_query(filters.regex(r"^next"))
+async def next_page(bot, query):
+    ident, req, key, offset = query.data.split("_")
+    if int(req) not in [query.from_user.id, 0]:
+        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+    try:
+        offset = int(offset)
+    except:
+        offset = 0
+    search = BUTTONS.get(key)
+    if not search:
+        await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name),show_alert=True)
+        return
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
