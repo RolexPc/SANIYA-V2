@@ -317,7 +317,13 @@ Elsa
 ©{message.chat.title}</b>
 """
 
-    CUSTOM_FILE_CAPTION = <b>╔═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗
+    CUSTOM_FILE_CAPTION = """
+ <b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}</b>
+
+
+<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{file_size}</b>
+
+<b>╔═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/ARAKAL_THERAVAD_MOVIESS> 𝐆𝐑𝐎𝐔𝐏 </a>
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS> 𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒 </a>
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/ARAKAL_THERAVAD_GROUP_LINKS> 𝐂𝐇𝐀𝐍𝐍𝐄𝐋 </a>
