@@ -298,46 +298,64 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
         return
     temp.GETALL[key] = files
-    settings = await get_settings(message.chat.id)
-    pre = 'filep' if settings['file_secure'] else 'file'
-    if settings["button"]:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"📂[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
-                ),
-            ]
-            for file in files
-        ]
-        btn.insert(0, 
-            [
-                InlineKeyboardButton(
-"Qᴜᴀʟɪᴛʏ",  callback_data=f"qualities#{key}"),
-                InlineKeyboardButton("Lᴀɴɢᴜᴀɢᴇ", callback_data=f"languages#{key}"),
-                InlineKeyboardButton("Sᴇᴀsᴏɴ",  callback_data=f"seasons#{key}")
-            ]
-        )
-        btn.insert(0, [
-            InlineKeyboardButton("📍 𝗦𝗲𝗻𝗱 𝗔𝗹𝗹 𝗙𝗶𝗹𝗲𝘀 𝗜𝗻 𝗢𝗻𝗲 𝗟𝗶𝗻𝗸 📍", callback_data=f"sendfiles#{key}")
-        ])
+    settings = await get_settings(query.message.chat.id)
+    if 'is_shortlink' in settings.keys():
+        ENABLE_SHORTLINK = settings['is_shortlink']
     else:
-        btn = []
-        btn.insert(0, 
-            [
-                InlineKeyboardButton(
-"Qᴜᴀʟɪᴛʏ",  callback_data=f"qualities#{key}"),
-                InlineKeyboardButton("Lᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-                InlineKeyboardButton("Sᴇᴀsᴏɴ",  callback_data=f"seasons#{key}")
+        await save_group_settings(query.message.chat.id, 'is_shortlink', False)
+        ENABLE_SHORTLINK = False
+    if ENABLE_SHORTLINK == True:
+        if settings['button']:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"[{get_size(file.file_size)}] {file.file_name}",
+                        url=await get_shortlink(query.message.chat.id,
+                                                f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                    ),
+                ]
+                for file in files
             ]
-        )
-        btn.insert(0, [
-            InlineKeyboardButton("📍 𝗦𝗲𝗻𝗱 𝗔𝗹𝗹 𝗙𝗶𝗹𝗲𝘀 𝗜𝗻 𝗢𝗻𝗲 𝗟𝗶𝗻𝗸 📍", callback_data=f"sendfiles#{key}")
-        ])
+        else:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"{file.file_name}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                    ),
+                    InlineKeyboardButton(
+                        text=f"{get_size(file.file_size)}",
+                        url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                    ),
+                ]
+                 for file in files
+            ]
+    btn.insert(0,
+               [
+                   InlineKeyboardButton(f' ♀️ 𝐘𝐎𝐔𝐑 𝐅𝐈𝐋𝐄𝐒 𝐑𝐄𝐃𝐘 𝐍𝐎𝐖 ♀️ ', 'rkbtn')
+               ]
+               )
+    btn.insert(1,
+               [
+                   InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤", callback_data=f"send_fall#files#{key}#{offset}"),
+                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+               ]
+               )
+    btn.insert(2,
+               [
+                   InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                   InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),                   
+                   InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo')
+               ]
+               )
 
-    if offset != "":
-        try:
-            if settings['max_btn']:
-                btn.append(
+    if 0 < offset <= 10:
+        off_set = 0
+    elif offset == 0:
+        off_set = None
+    else:
+        off_set = offset - 10
+    if n_offset == 0:
+        btn.append(
                     [InlineKeyboardButton("𝐏𝐀𝐆𝐄", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➪",callback_data=f"next_{req}_{key}_{offset}")]
                 )
 
