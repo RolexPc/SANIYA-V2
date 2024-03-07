@@ -1435,10 +1435,9 @@ async def auto_filter(client, msg, spoll=False):
                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo')
                ]
                )
-
+    
+    BUTTONS[key] = search # [github.com/Joelkb] for the proper working of language and send all feature while there's only file count < 11, it should be declared outside the if statement (cause when file count is < 11, offset = "" [empty string])
     if offset != "":
-        key = f"{message.chat.id}-{message.id}"
-        BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         btn.append(
             [InlineKeyboardButton(text=f"📖 𝑷𝒂𝒈𝒆𝒔 1/{math.ceil(int(total_results) / 7)}", callback_data="pages"),
