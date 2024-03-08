@@ -8,8 +8,7 @@ from Script import script
 import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
-from info import ADMINS, AUTH_CHANNEL, FILE_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, NOR_IMG, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, SPELL_IMG, MSG_ALRT, FILE_FORWARD, MAIN_CHANNEL, LOG_CHANNEL, PICS, SUPPORT_CHAT_ID
+from info import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -34,7 +33,6 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
-LANGUAGES = ["malayalam", "tamil", "english", "hindi", "telugu", "kannada"]
 
 @Client.on_message(filters.command('autofilter') & filters.user(ADMINS))
 async def fil_mod(client, message): 
@@ -174,7 +172,7 @@ async def next_page(bot, query):
     btn.insert(1,
                [
                    InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤", callback_data=f"send_fall#files#{key}#{offset}"),
-                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{key}")
                ]
                )
     btn.insert(2,
@@ -219,7 +217,8 @@ async def next_page(bot, query):
     await query.answer()
 
 
-# Language Code Temp
+# Language Code Temp # added @user_is_leo
+
 @Client.on_callback_query(filters.regex(r"^languages#"))
 async def languages_cb_handler(client: Client, query: CallbackQuery):
 
@@ -337,7 +336,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
     btn.insert(1,
                [
                    InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤", callback_data=f"send_fall#files#{key}#{offset}"),
-                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{key}")
                ]
                )
     btn.insert(2,
@@ -1415,7 +1414,7 @@ async def auto_filter(client, msg, spoll=False):
                [
                    InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤",
                                         callback_data=f"send_fall#{pre}#{message.chat.id}-{message.id}#{0}"),
-                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs ​🔊", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs ​🔊", callback_data=f"languages#{key}")
                ]
                )
     btn.insert(2,
