@@ -295,93 +295,132 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
     files, offset, total_results = await get_search_results(chat_id, search, offset=0, filter=True)
     if not files:
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
-        return
-    temp.GETALL[key] = files
-    settings = await get_settings(query.message.chat.id)
+        returnreturn
+   
+    settings = await get_settings(message.chat.id)
     if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
     else:
-        await save_group_settings(query.message.chat.id, 'is_shortlink', False)
+        await save_group_settings(message.chat.id, 'is_shortlink', False)
         ENABLE_SHORTLINK = False
+    pre = 'filep' if settings['file_secure'] else 'file'
     if ENABLE_SHORTLINK == True:
-        if settings['button']:
-            btn = [
+        btn = (
+            [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}",
-                        url=await get_shortlink(query.message.chat.id,
-                                                f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"▫️ {get_size(file.file_size)} ⊳ {file.file_name}",
+                        url=await get_shortlink(
+                            message.chat.id,
+                            f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
+                        ),
                     ),
                 ]
                 for file in files
             ]
-        else:
-            btn = [
+            if settings["button"]
+            else [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"{file.file_name}",
+                        url=await get_shortlink(
+                            message.chat.id,
+                            f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
+                        ),
                     ),
                     InlineKeyboardButton(
                         text=f"{get_size(file.file_size)}",
-                        url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        url=await get_shortlink(
+                            message.chat.id,
+                            f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
+                        ),
                     ),
                 ]
-                 for file in files
+                for file in files
             ]
-    btn.insert(0,
-               [
-                   InlineKeyboardButton(f' ♀️ 𝐘𝐎𝐔𝐑 𝐅𝐈𝐋𝐄𝐒 𝐑𝐄𝐃𝐘 𝐍𝐎𝐖 ♀️ ', 'rkbtn')
-               ]
-               )
-    btn.insert(1,
-               [
-                   InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤", callback_data=f"send_fall#files#{key}#{offset}"),
-                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{key}")
-               ]
-               )
-    btn.insert(2,
-               [
-                   InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                   InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),                   
-                   InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo')
-               ]
-               )
-
-    if 0 < offset <= 10:
-        off_set = 0
-    elif offset == 0:
-        off_set = None
-    else:
-        off_set = offset - 10
-    if n_offset == 0:
-        btn.append(
-            [InlineKeyboardButton("⌫ 𝐁𝐀𝐂𝐊", callback_data=f"next_{req}_{key}_{off_set}"),
-             InlineKeyboardButton(f"📖 𝑷𝒂𝒈𝒆𝒔 {math.ceil(int(offset) / 7) + 1} / {math.ceil(total / 7)}",
-                                  callback_data="pages")]
         )
-    elif off_set is None:
-        btn.append(
-            [InlineKeyboardButton(f"{math.ceil(int(offset) / 7) + 1} / {math.ceil(total / 7)}", callback_data="pages"),
-             InlineKeyboardButton("𝐍𝐄𝐗𝐓 ⌦", callback_data=f"next_{req}_{key}_{n_offset}")])
-    else:
-        btn.append(
+    elif settings["button"]:
+        btn = [
             [
-                InlineKeyboardButton("⌫ 𝐁𝐀𝐂𝐊", callback_data=f"next_{req}_{key}_{off_set}"),
-                InlineKeyboardButton(f"📖 𝑷𝒂𝒈𝒆𝒔 {math.ceil(int(offset) / 7) + 1} / {math.ceil(total / 7)}",
-                                     callback_data="pages"),
-                InlineKeyboardButton("𝐍𝐄𝐗𝐓 ⌦", callback_data=f"next_{req}_{key}_{n_offset}")
-            ],
-        )
+                InlineKeyboardButton(
+                    text=f"▫️ {get_size(file.file_size)} ⊳ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                ),
+            ]
+            for file in files
+        ]
+    else:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f'{pre}#{file.file_id}',
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'{pre}#{file.file_id}',
+                ),
+            ]
+            for file in files
+        ]
     try:
-        await query.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
-    except MessageNotModified:
-        pass
-    await query.answer()
+        if settings['auto_delete']:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
 
+        else:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
 
-# spellcheck error fixing
+    except KeyError:
+        grpid = await active_connection(str(message.from_user.id))
+        await save_group_settings(grpid, 'auto_delete', True)
+        settings = await get_settings(message.chat.id)
+        if settings['auto_delete']:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
+
+        else:
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
+                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
+                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                ],
+            )
+
+    btn.insert(0, [
+        InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤", callback_data=f"send_fall#files#{key}#{offset}")
+    ])
+    offset = 0
+
+    btn.append([
+        InlineKeyboardButton(
+            text="↺ ʙᴀᴄᴋ ᴛᴏ ꜰɪʟᴇs ​↻",
+            callback_data=f"next_{req}_{key}_{offset}"
+        ),
+    ])
+
+    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))lcheck error fixing
+
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
@@ -389,7 +428,7 @@ async def advantage_spoll_choker(bot, query):
     if not movies:
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name),show_alert=True)
+        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name),sert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movie = movies[(int(movie_))]
