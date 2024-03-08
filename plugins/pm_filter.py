@@ -419,9 +419,10 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         ),
     ])
 
-    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))lcheck error fixing
+    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
 
-@Client.on_callback_query(filters.regex(r"^spol"))
+
+# spellcheck error fixing
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
