@@ -808,9 +808,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "pages":
         await query.answer()
         
+    search = BUTTONS.get(key)    
     elif query.data.startswith("send_fall"):
         temp_var, ident, key, offset = query.data.split("#")
-        search = BUTTONS.get(key)
         if not search:
             await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
             return
