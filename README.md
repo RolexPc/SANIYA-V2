@@ -1,4 +1,4 @@
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/soulpc/Elsa)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RolexPc/AUTO-FILTER-V4)
 
 
 
@@ -86,7 +86,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy To Heroku</summary>
 <br>
 <p>
-<a href="https://heroku.com/deploy?template=https://github.com/Devil-Botz/Elsa">
+<a href="https://heroku.com/deploy?template=https://github.com/RolexPc/AUTO-FILTER-V4">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p></details>
