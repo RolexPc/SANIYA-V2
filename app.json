@@ -16,8 +16,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/soulpc/Elsa",
-    "repository": "https://github.com/soulpc/Elsa",
+    "website": "https://github.com/RolexPc/AUTO-FILTER-V4",
+    "repository": "https://github.com/RolexPc/AUTO-FILTER-V4",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
