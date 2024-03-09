@@ -261,31 +261,22 @@ async def languages_cb_handler(client: Client, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex(r"^fl#"))
 async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
-    _, lang, key = query.data.split("#")
-    curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
-    search = FRESH.get(key)
+    _, lang, search, key = query.data.split("#")
+
     search = search.replace("_", " ")
-    baal = lang in search
-    if baal:
-        search = search.replace(lang, "")
-    else:
-        search = search
     req = query.from_user.id
     chat_id = query.message.chat.id
     message = query.message
-    try:
-        if int(req) not in [query.message.reply_to_message.from_user.id, 0]:
-            return await query.answer(
-                f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
-                show_alert=True,
-            )
-    except:
-        pass
-    if lang != "homepage":
-        search = f"{search} {lang}" 
-    BUTTONS[key] = search
+    if int(req) not in [query.message.reply_to_message.from_user.id, 0]:
+        return await query.answer(
+            f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
+            show_alert=True,
+        )
 
-    files, offset, total_results = await get_search_results(chat_id, search, offset=0, filter=True)
+    search = f"{search} {lang}"
+
+    files, offset, _ = await get_search_results(search, max_results=10)
+    files = [file for file in files if re.search(lang, file.file_name, re.IGNORECASE)]
     if not files:
         await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
         return
