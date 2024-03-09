@@ -807,18 +807,30 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "pages":
         await query.answer()
-        
-    search = BUTTONS.get(key)    
+           
     elif query.data.startswith("send_fall"):
         temp_var, ident, key, offset = query.data.split("#")
+        search = BUTTONS.get(key)
         if not search:
             await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
             return
-        files, n_offset, total = await get_search_results(search, offset=int(offset), filter=True)
+    
+        # Check if offset is provided and not empty
+        if offset.strip():  # Check if offset is not empty
+            try:
+                offset = int(offset)
+            except ValueError:
+                await query.answer("Invalid offset value provided.", show_alert=True)
+                return
+        else:
+            offset = 0  # Default offset value if not provided
+
+        files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
         await send_all(client, query.from_user.id, files, ident)
         await query.answer(
-            f"Hey {query.from_user.first_name}, All files on this page has been sent successfully to your PM !",
+            f"Hey {query.from_user.first_name}, All files on this page have been sent successfully to your PM!",
             show_alert=True)
+
         
     elif query.data == "reqinfo":
         await query.answer("⚠️ 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 ⚠️\n\n𝑨𝒇𝒕𝒆𝒓 𝟓 𝑴𝒊𝒏𝒖𝒕𝒆𝒔 𝑻𝒉𝒊𝒔 𝑴𝒆𝒔𝒔𝒂𝒈𝒆 𝑾𝒆𝒍𝒍 𝑩𝒆 𝑨𝒖𝒕𝒐𝒎𝒂𝒕𝒊𝒄𝒂𝒍𝒍𝒚 𝑫𝒆𝒍𝒆𝒕𝒆𝒅\n\n𝑰𝒇 𝒀𝒐𝒖 𝑫𝒐 𝑵𝒐𝒕 𝑺𝒆𝒆 𝑻𝒉𝒆 𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒆𝒅 𝑴𝒐𝒗𝒊𝒆 / 𝑺𝒆𝒓𝒊𝒆𝒔 𝑭𝒊𝒍𝒆, 𝑳𝒐𝒐𝒌 𝑨𝒕 𝑻𝒉𝒆 𝑵𝒆𝒙𝒕 𝑷𝒂𝒈𝒆,\n\n©️ 𝐀𝐑𝐀𝐊𝐀𝐋 𝐓𝐇𝐄𝐑𝐀𝐕𝐀𝐃 𝐌𝐎𝐕𝐈𝐄𝐒", True)
