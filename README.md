@@ -6,7 +6,7 @@
   <img src="https://telegra.ph/file/4977d4b29ac3b82441563.jpg" alt="𝑺𝒂𝒏𝒊𝒚𝒂 𝑰𝒚𝒂𝒑𝒑𝒂𝒏">
 </p>
 <h1 align="center">
-  <b>Elsa</b>
+  <b>𝑺𝒂𝒏𝒊𝒚𝒂 𝑰𝒚𝒂𝒑𝒑𝒂𝒏</b>
 </h1>
 
 <p align="center">
