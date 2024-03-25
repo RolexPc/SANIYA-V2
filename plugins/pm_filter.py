@@ -195,7 +195,7 @@ async def next_page(bot, query):
             ]
     btn.insert(0,
                [
-                   InlineKeyboardButton(f' ♀️ 𝐘𝐎𝐔𝐑 𝐅𝐈𝐋𝐄𝐒 𝐑𝐄𝐃𝐘 𝐍𝐎𝐖 ♀️ ', 'rkbtn')
+                   InlineKeyboardButton("♀️ 𝑰𝑵𝑺𝑻𝑨𝑮𝑹𝑨𝑴 ♀️", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
                ]
                )
     btn.insert(1,
@@ -1468,7 +1468,7 @@ async def auto_filter(client, msg, spoll=False):
     key = f"{message.chat.id}-{message.id}"
     btn.insert(0,
                [
-                   InlineKeyboardButton(f' ♀️ 𝐘𝐎𝐔𝐑 𝐅𝐈𝐋𝐄𝐒 𝐑𝐄𝐃𝐘 𝐍𝐎𝐖 ♀️ ', 'rkbtn')
+                   InlineKeyboardButton("♀️ 𝑰𝑵𝑺𝑻𝑨𝑮𝑹𝑨𝑴 ♀️", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg=="),
                ]
                )
     btn.insert(1,
