@@ -287,7 +287,7 @@ Elsa
 <b>കോപ്പി റൈറ്റ് ഉള്ളത് കൊണ്ട് ഈ ഒരു ഫയൽ 𝟓 മിനിറ്റ് കൊണ്ട് ഇവിടെ നിന്നും ഡിലേറ്റാവും...!!!</b>
 
 <b>╔═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗
-♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/ARAKAL_THERAVAD_MOVIESS> 𝐆𝐑𝐎𝐔𝐏 </a>
+♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/+tDgIRWerxDNhMWE1> 𝐆𝐑𝐎𝐔𝐏 </a>
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS> 𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒 </a>
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/ARAKAL_THERAVAD_GROUP_LINKS> 𝐂𝐇𝐀𝐍𝐍𝐄𝐋 </a>
 ╚═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╝</b>
@@ -324,7 +324,7 @@ Elsa
 <b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{file_size}</b>
 
 <b>╔═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗
-♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/ARAKAL_THERAVAD_MOVIESS> 𝐆𝐑𝐎𝐔𝐏 </a>
+♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/+tDgIRWerxDNhMWE1> 𝐆𝐑𝐎𝐔𝐏 </a>
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS> 𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒 </a>
 ♻️ 𝑱𝑶𝑰𝑵 :- <a href=https://t.me/ARAKAL_THERAVAD_GROUP_LINKS> 𝐂𝐇𝐀𝐍𝐍𝐄𝐋 </a>
 ╚═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╝</b>"""
