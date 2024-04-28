@@ -543,7 +543,7 @@ async def send_all(bot, userid, files, ident):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton('Cʜᴀɴɴᴇʟ', url=MAIN_CHANNEL)
+                        InlineKeyboardButton('Cʜᴀɴɴᴇʟ', url="https://t.me/ARAKAL_THERAVAD_GROUP_LINKS")
                     ]
                 ]
             )
