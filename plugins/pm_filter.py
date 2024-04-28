@@ -195,6 +195,7 @@ async def next_page(bot, query):
             ]
     btn.insert(0,
                [
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
                    InlineKeyboardButton("♀️ 𝑰𝑵𝑺𝑻𝑨𝑮𝑹𝑨𝑴 ♀️", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
                ]
                )
@@ -1468,6 +1469,7 @@ async def auto_filter(client, msg, spoll=False):
     key = f"{message.chat.id}-{message.id}"
     btn.insert(0,
                [
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
                    InlineKeyboardButton("♀️ 𝑰𝑵𝑺𝑻𝑨𝑮𝑹𝑨𝑴 ♀️", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg=="),
                ]
                )
@@ -1532,7 +1534,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b> Hai 👋 {message.from_user.mention} 😍\n\n📁 𝗙𝗼𝘂𝗻𝗱 ✨  𝗙𝗶𝗹𝗲𝘀 𝗙𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 : #{search} 👇🏻\n\n⚙️ 𝗚𝗥𝗢𝗨𝗣 : {message.chat.title}</i></b>"
+        cap = f"<b> Hai 👋 {message.from_user.mention} 😍\n\n📬 𝑇𝑖𝑡𝑙𝑒 :  {search} \n📁 𝖸𝗈𝗎𝗋 𝖥𝗂𝗅𝖾𝗌 𝖠𝗋𝖾 𝖱𝖾𝖺𝖽𝗒\n\n♨️ 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖡𝗒 :\n🔺 𝐀𝐑𝐀𝐊𝐀𝐋 𝐓𝐇𝐄𝐑𝐀𝐕𝐀𝐃 𝐌𝐎𝐕𝐈𝐄𝐒 🔺\n\n🔰 𝑇ℎ𝑥 𝐹𝑜𝑟 𝑅𝑒𝑞𝑢𝑒𝑠𝑡 🎯</i></b>"
     if imdb and imdb.get('poster'):
         try:
             if message.chat.id == SUPPORT_CHAT_ID:
