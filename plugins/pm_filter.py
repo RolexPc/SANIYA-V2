@@ -148,7 +148,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"📂[{get_size(file.file_size)}] ⊳ {file.file_name}",
+                        text=f"📂{get_size(file.file_size)} ⊳ {file.file_name}",
                         url=await get_shortlink(query.message.chat.id,
                                                 f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
@@ -175,7 +175,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"📂[{get_size(file.file_size)}] ⊳ {file.file_name}", callback_data=f'files#{file.file_id}'
+                        text=f"📂{get_size(file.file_size)} ⊳ {file.file_name}", callback_data=f'files#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -196,22 +196,15 @@ async def next_page(bot, query):
     btn.insert(0,
                [
                    InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
-                   InlineKeyboardButton("♀️ 𝑰𝑵𝑺𝑻𝑨𝑮𝑹𝑨𝑴 ♀️", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌🔺", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
                ]
                )
     btn.insert(1,
                [
-                   InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤", callback_data=f"send_fall#files#{key}#{offset}"),
-                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs 🔊​", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+                   InlineKeyboardButton("🔻𝐒𝐄𝐍𝐃 𝐀𝐋𝐋 𝐅𝐈𝐋𝐄𝐒🔻", callback_data=f"send_fall#files#{key}#{offset}"),
+                   InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
                ]
-               )
-    btn.insert(2,
-               [
-                   InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                   InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),                   
-                   InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo')
-               ]
-               )
+              )    
 
     if 0 < offset <= 10:
         off_set = 0
@@ -377,9 +370,8 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
             btn.insert(
                 0,
                 [
-                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
-                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌🔺", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
                 ],
             )
 
@@ -387,9 +379,8 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
             btn.insert(
                 0,
                 [
-                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
-                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌🔺", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
                 ],
             )
 
@@ -401,9 +392,8 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
             btn.insert(
                 0,
                 [
-                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
-                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌🔺", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")
                 ],
             )
 
@@ -411,9 +401,8 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
             btn.insert(
                 0,
                 [
-                    InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                    InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),
-                    InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo'),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌🔺", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==")               
                 ],
             )
 
@@ -1446,7 +1435,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"📂[{get_size(file.file_size)}] ⊳ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                        text=f"📂{get_size(file.file_size)} ⊳ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -1470,23 +1459,16 @@ async def auto_filter(client, msg, spoll=False):
     btn.insert(0,
                [
                    InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐔𝐏𝐃𝐀𝐓𝐄𝐒🔺", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS"),
-                   InlineKeyboardButton("♀️ 𝑰𝑵𝑺𝑻𝑨𝑮𝑹𝑨𝑴 ♀️", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg=="),
+                   InlineKeyboardButton("🔺𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌🔺", url=f"https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg=="),
                ]
                )
     btn.insert(1,
                [
-                   InlineKeyboardButton("📤 ꜱᴇɴᴅ ᴀʟʟ ꜰɪʟᴇꜱ 📤",
+                   InlineKeyboardButton("🔻𝐒𝐄𝐍𝐃 𝐀𝐋𝐋 𝐅𝐈𝐋𝐄𝐒🔻",
                                         callback_data=f"send_fall#{pre}#{message.chat.id}-{message.id}#{0}"),
-                   InlineKeyboardButton("🔊 ʟᴀɴɢᴜᴀɢᴇs ​🔊", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+                   InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
                ]
-               )
-    btn.insert(2,
-               [
-                   InlineKeyboardButton(f'📨 𝑰𝒏𝒇𝒐', 'reqinfo'),
-                   InlineKeyboardButton(f'⚙ 𝑩𝒆𝒔𝒕', 'minfo'),                   
-                   InlineKeyboardButton(f'🎁 𝑻𝒊𝒑𝒔', 'tinfo')
-               ]
-               )
+              )    
     
     BUTTONS[key] = search # [github.com/Joelkb] for the proper working of language and send all feature while there's only file count < 11, it should be declared outside the if statement (cause when file count is < 11, offset = "" [empty string])
     if offset != "":
