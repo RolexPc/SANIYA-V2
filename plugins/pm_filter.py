@@ -853,6 +853,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "fhin":
         await query.answer("कॉपीराइट के कारण फ़ाइल यहां से 𝟓 मिनट में डिलीट हो जाएगी इसलिए यहां से कहीं और ले जाकर डाउनलोड करें!", show_alert=True)
+
+    elif query.data == "winfo":
+        await query.answer("𝐍𝐎𝐓 𝐀𝐕𝐈𝐋𝐀𝐁𝐋𝐄.", show_alert=True)      
+
+    elif query.data == "qinfo":
+        await query.answer("𝐍𝐎𝐓 𝐀𝐕𝐈𝐋𝐀𝐁𝐋𝐄.", show_alert=True)
+
+    elif query.data == "einfo":
+        await query.answer("𝐍𝐎𝐓 𝐀𝐕𝐈𝐋𝐀𝐁𝐋𝐄.", show_alert=True)
+
+    elif query.data == "rinfo":
+        await query.answer("𝐍𝐎𝐓 𝐀𝐕𝐈𝐋𝐀𝐁𝐋𝐄.", show_alert=True)
         
     elif query.data == "surprise":
         btn = [[
@@ -899,18 +911,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer(MSG_ALRT)
     elif query.data == "help":
         buttons = [[
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟭", url=f"https://t.me/+FAa3tYIjXYcyZDY1"),
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟮", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_02")
-            ],[
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟯", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_03"),
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟰", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_04")
-            ],[
-            InlineKeyboardButton("🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥", url="https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS")
-            ],[
-            InlineKeyboardButton("⭕️ 𝗚𝗘𝗧 𝗢𝗨𝗥 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 𝗟𝗜𝗡𝗞𝗦 ⭕️", url="https://t.me/ARAKAL_THERAVAD_GROUP_LINKS")
-            ],[
-            InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')                
+            InlineKeyboardButton('💡FIʟᴛᴇʀs', callback_data='filters'),
+            InlineKeyboardButton('⚠️ Fɪʟᴇ Sᴛᴏʀᴇ', 'minfo')
+        ], [
+            InlineKeyboardButton('📍Cᴏɴɴᴇᴄᴛɪᴏɴ', 'qinfo'),
+            InlineKeyboardButton('⚙ Exᴛʀᴀ Mᴏᴅs', 'winfo')
+        ], [
+            InlineKeyboardButton('♻️ Hᴏᴍᴇ', callback_data='start'),
+            InlineKeyboardButton('📈 Sᴛᴀᴛᴜs', callback_data='stats')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(
@@ -1000,12 +1008,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "about":
-        buttons = [[
-            InlineKeyboardButton('sᴛᴀᴛᴜs', callback_data='stats'),
-            InlineKeyboardButton('sᴏᴜʀᴄᴇ', callback_data='source')
+        buttons = [[            
+            InlineKeyboardButton('🪬 𝑯𝒐𝒎𝒆 🪬', callback_data='start')
         ], [
-            InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
-            InlineKeyboardButton('ᴄʟᴏsᴇ', callback_data='close_data')
+            InlineKeyboardButton('⟸ 𝑩𝒂𝒄𝒌', callback_data='help'),
+            InlineKeyboardButton('✖️ 𝑪𝒍𝒐𝒔𝒆', callback_data='close_data')            
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(
