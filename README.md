@@ -1,7 +1,3 @@
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RolexPc/AUTO-FILTER-V4)
-
-
-
 <p align="center">
   <img src="https://telegra.ph/file/4977d4b29ac3b82441563.jpg" alt="𝑺𝒂𝒏𝒊𝒚𝒂 𝑰𝒚𝒂𝒑𝒑𝒂𝒏">
 </p>
@@ -86,7 +82,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy To Heroku</summary>
 <br>
 <p>
-<a href="https://heroku.com/deploy?template=https://github.com/RolexPc/AUTO-FILTER-V4">
+<a href="https://heroku.com/deploy?template=https://github.com/RolexPc/SANIYA-V1">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p></details>
