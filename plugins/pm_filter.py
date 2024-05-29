@@ -924,16 +924,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS))
-        )
-        await query.message.edit_text(
-            text=script.ALL_FILTERS.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
+        )        
     elif query.data == "help":
         buttons = [[
             InlineKeyboardButton('💡FIʟᴛᴇʀs', callback_data='filters'),
-            InlineKeyboardButton('⚠️ Fɪʟᴇ Sᴛᴏʀᴇ', 'minfo')
+            InlineKeyboardButton('⚠️ Fɪʟᴇ Sᴛᴏʀᴇ', 'rinfo')
         ], [
             InlineKeyboardButton('📍Cᴏɴɴᴇᴄᴛɪᴏɴ', 'qinfo'),
             InlineKeyboardButton('⚙ Exᴛʀᴀ Mᴏᴅs', 'winfo')
