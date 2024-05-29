@@ -927,7 +927,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )        
     elif query.data == "help":
         buttons = [[
-            InlineKeyboardButton('💡FIʟᴛᴇʀs', callback_data='filters'),
+            InlineKeyboardButton('💡FIʟᴛᴇʀs', callback_data='aswin'),
             InlineKeyboardButton('⚠️ Fɪʟᴇ Sᴛᴏʀᴇ', 'rinfo')
         ], [
             InlineKeyboardButton('📍Cᴏɴɴᴇᴄᴛɪᴏɴ', 'qinfo'),
@@ -958,18 +958,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "aswin":
         buttons = [[
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟭", url=f"https://t.me/+FAa3tYIjXYcyZDY1"),
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟮", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_02")
-            ],[
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟯", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_03"),
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟰", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_04")
-            ],[
-            InlineKeyboardButton("🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥", url="https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS")
-            ],[
-            InlineKeyboardButton("⭕️ 𝗚𝗘𝗧 𝗢𝗨𝗥 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 𝗟𝗜𝗡𝗞𝗦 ⭕️", url="https://t.me/ARAKAL_THERAVAD_GROUP_LINKS")
-            ],[
-            InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')                
+            InlineKeyboardButton('🕹 Mᴀɴᴜᴀʟ FIʟᴛᴇʀ', 'einfo'),
+            InlineKeyboardButton('📥 Aᴜᴛᴏ FIʟᴛᴇʀ', callback_data='autofilter')
+        ],[
+            InlineKeyboardButton('⟸ 𝑩𝒂𝒄𝒌', callback_data='help'),            
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(
