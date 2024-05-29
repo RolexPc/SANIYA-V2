@@ -730,7 +730,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         )
                     )
                     if settings['auto_delete']:
-                        await asyncio.sleep()
+                        await asyncio.sleep(300)
                         await Joel_tgx.delete()
                         await file_send.delete()
                 else:
