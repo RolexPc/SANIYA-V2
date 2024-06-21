@@ -18,7 +18,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerId
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, \
     get_shortlink, send_all
 from database.users_chats_db import db
-from database.ia_filterdb import Media2, Media3, Media4, Media5, get_file_details, get_search_results, get_bad_files
+from database.ia_filterdb import Media2, Media3, Media4, Media5, get_file_details, get_search_results, get_bad_filesdb as clientDB, db2 as clientDB2, db3 as clientDB3, db4 as clientDB4, db5 as clientDB5
 from database.filters_mdb import find_gfilter, get_gfilters
 from database.gfilters_mdb import (
     find_gfilter,
