@@ -39,18 +39,7 @@ class Bot(Client):
         b_users, b_chats = await db.get_banned()
         temp.BANNED_USERS = b_users
         temp.BANNED_CHATS = b_chats
-        await super().start()        
-        if REQ_CHANNEL == None:
-            with open("./dynamic.env", "wt+") as f:
-                req = await JoinReqs().get_fsub_chat()
-                if req is None:
-                    req = False
-                else:
-                    req = req['chat_id']
-                f.write(f"REQ_CHANNEL={req}\n")
-            logging.info("Loading REQ_CHANNEL from database...")
-            os.execl(sys.executable, sys.executable, "bot.py")
-            return        
+        await super().start()                       
         me = await self.get_me()
         temp.ME = me.id
         temp.U_NAME = me.username
