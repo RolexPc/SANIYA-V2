@@ -75,11 +75,14 @@ TMP_DOWNLOAD_DIRECTORY = environ.get("TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
 COMMAND_HAND_LER = environ.get("COMMAND_HAND_LER", "/")
 
 # MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://pcmovies:pcmovies@cluster0.4vv9ebl.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "pcmovies")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
-MONGO_URL = os.environ.get('MONGO_URL', "")
-
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://pcmovies:pcmovies@cluster0.4vv9ebl.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://Renamebotv8:Renamebotv8@cluster0.1xwrpu8.mongodb.net/")
+DATABASE_URI3 = environ.get('DATABASE_URI3', "mongodb+srv://Renamebotv7:Renamebotv7@cluster0.0bwkpqd.mongodb.net/")
+DATABASE_URI4 = environ.get('DATABASE_URI4', "mongodb+srv://Renamebotv6:Renamebotv6@cluster0.xuqjwfh.mongodb.net/")
+DATABASE_URI5 = environ.get('DATABASE_URI5', "mongodb+srv://renamebotv5:renamebotv5@cluster0.h28sspp.mongodb.net/")
+                            
 #Downloader
 DOWNLOAD_LOCATION = environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/AudioBoT/")
 
