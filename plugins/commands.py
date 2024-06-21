@@ -6,7 +6,7 @@ from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
+from database.ia_filterdb import Media2, Media3, Media4, Media5, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, MSG_ALRT, MAIN_CHANNEL
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp
@@ -58,13 +58,10 @@ async def start(client, message):
             InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
             InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')                
         ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        m=await message.reply_sticker("CAACAgUAAxkBAAEK6JBlcDrxx2kKgHFEO-EyNFLg4BDG1AAC7gwAAngciVfzwSTJ0UT6ajME") 
-        await asyncio.sleep(3)
-        await m.delete()        
+        reply_markup = InlineKeyboardMarkup(buttons)      
         await message.reply_photo(
             photo=random.choice(PICS),
-            caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
@@ -115,7 +112,7 @@ async def delete(bot, message):
     if reply and reply.media:
         msg = await message.reply("Processing...⏳", quote=True)
     else:
-        await message.reply('Reply to file with /delete which you want to delete', quote=True)
+        await message.reply('Reply to the file with /delete that you want to delete', quote=True)
         return
 
     for file_type in ("document", "video", "audio"):
@@ -123,37 +120,38 @@ async def delete(bot, message):
         if media is not None:
             break
     else:
-        await msg.edit('This is not supported file format')
+        await msg.edit('This is not a supported file format')
         return
     
     file_id, file_ref = unpack_new_file_id(media.file_id)
 
-    result = await Media.collection.delete_one({
-        '_id': file_id,
-    })
-    if result.deleted_count:
-        await msg.edit('File is successfully deleted from database')
+    # Check if the file exists in Media collection
+    result_media1 = await Media2.collection.find_one({'_id': file_id})
+
+    # Check if the file exists in Mediaa collection
+    result_media2 = await Media3.collection.find_one({'_id': file_id})   
+    result_media3 = await Media4.collection.find_one({'_id': file_id})   
+    result_media4 = await Media5.collection.find_one({'_id': file_id})   
+        
+    if result_media1:
+        # Delete from Media collection
+        await Media2.collection.delete_one({'_id': file_id})
+    elif result_media2:
+        # Delete from Mediaa collection
+        await Media3.collection.delete_one({'_id': file_id})
+    elif result_media3:
+        # Delete from Mediaa collection
+        await Media4.collection.delete_one({'_id': file_id})
+    elif result_media4:
+        # Delete from Mediaa collection
+        await Media5.collection.delete_one({'_id': file_id})
     else:
-        file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
-        result = await Media.collection.delete_many({
-            'file_name': file_name,
-            'file_size': media.file_size,
-            'mime_type': media.mime_type
-            })
-        if result.deleted_count:
-            await msg.edit('File is successfully deleted from database')
-        else:
-            # files indexed before https://github.com/EvamariaTG/EvaMaria/commit/f3d2a1bcb155faf44178e5d7a685a1b533e714bf#diff-86b613edf1748372103e94cacff3b578b36b698ef9c16817bb98fe9ef22fb669R39 
-            # have original file name.
-            result = await Media.collection.delete_many({
-                'file_name': media.file_name,
-                'file_size': media.file_size,
-                'mime_type': media.mime_type
-            })
-            if result.deleted_count:
-                await msg.edit('File is successfully deleted from database')
-            else:
-                await msg.edit('File not found in database')
+        # File not found in both collections
+        await msg.edit('File not found in the database')
+        return
+
+    await msg.edit('File is successfully deleted from the database')
+
 
 
 @Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
@@ -180,10 +178,12 @@ async def delete_all_index(bot, message):
 
 @Client.on_callback_query(filters.regex(r'^autofilter_delete'))
 async def delete_all_index_confirm(bot, message):
-    await Media.collection.drop()
-    await message.answer(MSG_ALRT)
+    await Media2.collection.drop()
+    await Media3.collection.drop()
+    await Media4.collection.drop()
+    await Media5.collection.drop()
+    await message.answer('Piracy Is Crime')
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
-
 
 @Client.on_message(filters.command('settings'))
 async def settings(client, message):
@@ -447,6 +447,122 @@ async def shortlink(bot, message):
     await save_group_settings(grpid, 'is_shortlink', True)
     await reply.edit_text(f"<b>Successfully added shortlink API for {title}.\n\nCurrent Shortlink Website: <code>{shortlink_url}</code>\nCurrent API: <code>{api}</code></b>")
 
+@Client.on_message(filters.command("delete_duplicate") & filters.user(ADMINS))
+async def delete_duplicate_files(client, message):
+    ok = await message.reply("prosessing...")
+    deleted_count = 0
+    batch_size = 0
+    async def remove_duplicates(collection1, unique_files, ok, deleted_count, batch_size):                        
+        async for duplicate_file in collection1.find():
+            file_size = duplicate_file["file_size"]
+            file_id = duplicate_file["file_id"]
+            if file_size in unique_files and unique_files[file_size] != file_id:
+                result_media1 = await collection1.find_one({'_id': file_id})                
+                if result_media1:
+                    await collection1.collection.delete_one({'_id': file_id})               
+                    deleted_count += 1                
+                    if deleted_count % 100 == 0:
+                        batch_size += 1
+                        await ok.edit(f'<b>Processing: Deleted {deleted_count} files in {batch_size} batches.</b>')
+        return deleted_count, batch_size
+    # Get all four collections
+    media1_collection = Media5
+    media2_collection = Media2
+    media3_collection = Media3
+    media4_collection = Media4
+
+    # Get all files from each collection
+    all_files_media1 = await media1_collection.find({}, {"file_id": 1, "file_size": 1}).to_list(length=None)
+    all_files_media2 = await media2_collection.find({}, {"file_id": 1, "file_size": 1}).to_list(length=None)
+    all_files_media3 = await media3_collection.find({}, {"file_id": 1, "file_size": 1}).to_list(length=None)
+    all_files_media4 = await media4_collection.find({}, {"file_id": 1, "file_size": 1}).to_list(length=None)
+
+    # Combine files from all collections
+    all_files = all_files_media1 + all_files_media2 + all_files_media3 + all_files_media4
+
+    # Remove duplicate files while keeping one copy
+    unique_files = {}
+    for file_info in all_files:
+        file_id = file_info["file_id"]
+        file_size = file_info["file_size"]
+        if file_size not in unique_files:
+            unique_files[file_size] = file_id
+
+    # Delete duplicate files from each collection
+    deleted_count, batch_size = await remove_duplicates(media1_collection, unique_files, ok, deleted_count, batch_size)
+    deleted_count = deleted_count
+    batch_size = batch_size
+    deleted_count, batch_size = await remove_duplicates(media2_collection, unique_files, ok, deleted_count, batch_size)
+    deleted_count = deleted_count
+    batch_size = batch_size
+    deleted_count, batch_size = await remove_duplicates(media3_collection, unique_files, ok, deleted_count, batch_size)
+    deleted_count = deleted_count
+    batch_size = batch_size
+    deleted_count, batch_size = await remove_duplicates(media4_collection, unique_files, ok, deleted_count, batch_size)    
+    deleted_count = deleted_count
+    batch_size = batch_size
+    
+    # Send a final message indicating the total number of duplicates deleted
+    await message.reply(f"Deleted {deleted_count} duplicate files. in {batch_size} batches")
+
+async def forward_files(chat_id, skip_count, channel_id, bot, message):
+    total_files = skip_count
+
+    # Fetch files from the first database
+    cursor1 = Media2.collection.find()
+    cursor2 = Media3.collection.find()
+    cursor3 = Media4.collection.find()
+    cursor4 = Media5.collection.find()
+    
+    files1 = await cursor1.to_list(length=None)
+    files2 = await cursor2.to_list(length=None)
+    files3 = await cursor3.to_list(length=None)
+    files4 = await cursor4.to_list(length=None)
+    
+    # Combine files from both databases
+    files = files1 + files2 + files3 + files4
+
+    all_files = files[skip_count:skip_count+3000]
+
+    for i, file in enumerate(all_files, 1):
+        filename = file["file_name"]
+        await bot.send_cached_media(
+            chat_id=int(channel_id),
+            file_id=file["_id"],
+            caption=f'📂 Fɪʟᴇ ɴᴀᴍᴇ : <code>{filename}</code>\n╭─────── • ◆ • ───────╮\n» ɢʀᴏᴜᴘ  :  <a href="https://t.me/Cinema_kottaka_group">𝙲𝚒𝚗𝚎𝚖𝚊 𝙺𝚘𝚝𝚝𝚊𝚔𝚊</a>  «\n» ᴜᴘᴅᴀᴛᴇꜱ :  <a href="https://t.me/Cinema_kottaka_official">𝙲𝚒𝚗𝚎𝚖𝚊 𝙺𝚘𝚝𝚝𝚊𝚔𝚊</a>«\n╰─────── • ◆ • ───────╯'
+        )
+        total_files += 1                
+        fcol.update_one({"_id": "forward_progress"}, {"$set": {"last_forwarded_file": total_files}}, upsert=True)
+        if total_files % 20 == 0:
+            tz = pytz.timezone('Asia/Kolkata')
+            today = datetime.date.today()
+            now = datetime.datetime.now(tz)
+            ttime = now.strftime("%I:%M:%S %p - %d %b, %Y")      
+            await message.edit(f"Forwarded {total_files} files. \n\nlast updated at {ttime}")
+        await asyncio.sleep(3.5)
+    balance = len(files) - total_files
+    return total_files, balance
+
+async def handle_forward_command(update, bot):
+    message = update
+    chat_id = message.chat.id    
+    channel_id = "-1002062652602"    
+    reply_message = await message.reply_text("Forwarding files...")
+    while True: 
+        progress_document = fcol.find_one({"_id": "forward_progress"})    
+        if progress_document:
+            skip_count = progress_document.get("last_forwarded_file", 0)
+        else:
+            skip_count = 0
+        total_forwarded, balance = await forward_files(chat_id, skip_count, channel_id, bot, reply_message)
+        if balance == 0:
+            await reply_message.edit(f"Forwarded {total_forwarded} files.")
+            break
+            
+@Client.on_message(filters.command("forward") & filters.user(ADMINS))
+async def forward_command_handler(client, message):
+    await handle_forward_command(message, client)
+    
 @Client.on_message(filters.command("deletefiles") & filters.user(ADMINS))
 async def deletemultiplefiles(bot, message):
     chat_type = message.chat.type
