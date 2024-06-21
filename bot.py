@@ -35,6 +35,16 @@ class Bot(Client):
             sleep_threshold=5,
         )
 
+    async def restart_index(bot):
+    progress_document = incol.find_one({"_id": "index_progress"})
+    if progress_document:
+        last_indexed_file = progress_document.get("last_indexed_file", 0)
+        last_msg_id = progress_document.get("last_msg_id")
+        chat_id = progress_document.get("chat_id")           
+        temp.CURRENT = int(last_indexed_file)
+        msg = await bot.send_message(chat_id=int(LOG_CHANNEL), text="Restarting Index...")
+        await index_files_to_db(last_msg_id, chat_id, msg, bot)
+        
     async def start(self):
         b_users, b_chats = await db.get_banned()
         temp.BANNED_USERS = b_users
