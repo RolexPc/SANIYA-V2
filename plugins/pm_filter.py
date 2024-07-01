@@ -636,10 +636,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup=InlineKeyboardMarkup(
                           [
                             [
-                            InlineKeyboardButton('𝐆 - 1⃣', url=f'https://t.me/ARAKAL_THERAVAD_GROUP_02'),
-                            InlineKeyboardButton('𝐆 - 2⃣', url=f'https://t.me/ARAKAL_THERAVAD_GROUP_03'),
-                            InlineKeyboardButton('𝐆 - 3⃣', url=f'https://t.me/cinemalokamramanan'),
-                            InlineKeyboardButton('𝐆 - 4⃣', url=f'https://t.me/ARAKAL_THERAVAD_GROUP_04')                                          
+                            InlineKeyboardButton('𝐆 - 1⃣', url=f'https://t.me/+cGHr19cdOjUxNGJl'),
+                            InlineKeyboardButton('𝐆 - 2⃣', url=f'https://t.me/+msjQ6MvS7Vs4ZmM1'),
+                            InlineKeyboardButton('𝐆 - 3⃣', url=f'https://t.me/+UtYVAU57YVIxNThl'),
+                            InlineKeyboardButton('𝐆 - 4⃣', url=f'https://t.me/+cFix6RwAWgdkMGNl')                                          
                           ],[
                             InlineKeyboardButton('🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥', url=f'https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS')
                           ],[     
@@ -819,10 +819,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "start":
         buttons = [[
             InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟭", url=f"https://t.me/+FAa3tYIjXYcyZDY1"),
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟮", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_02")
+            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟮", url=f"https://t.me/+msjQ6MvS7Vs4ZmM1")
             ],[
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟯", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_03"),
-            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟰", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_04")
+            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟯", url=f"https://t.me/+UtYVAU57YVIxNThl"),
+            InlineKeyboardButton("👥 𝗚𝗥𝗢𝗨𝗣 - 𝟰", url=f"https://t.me/+cFix6RwAWgdkMGNl")
             ],[
             InlineKeyboardButton("🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥", url="https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS")
             ],[
