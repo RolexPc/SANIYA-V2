@@ -1,7 +1,7 @@
 class script(object):
     START_TXT = """
 <b>
-𝐻𝑒𝑙𝑙𝑜 👋 {}</b>,
+𝐻𝑒𝑙𝑙𝑜 👋 {}</b>
 
 
 <b>I'ᴍ <a href=https://t.me/{}>{}</a> Yᴏᴜ Cᴀɴ Cᴀʟʟ Mᴇ Aꜱ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ V2 🫶</b>
@@ -309,7 +309,7 @@ Elsa
 """
     SUR_TXT = """
 <b>
-𝐻𝑒𝑙𝑙𝑜 👋 {}</b>,
+𝐻𝑒𝑙𝑙𝑜 👋 {}</b>
 
 <b>I'ᴍ <a href=https://t.me/{}>{}</a>Yᴏᴜ Cᴀɴ Cᴀʟʟ Mᴇ Aꜱ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ ᴠ2 🫶</b>
 
