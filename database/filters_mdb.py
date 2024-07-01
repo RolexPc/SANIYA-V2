@@ -46,7 +46,19 @@ async def find_gfilter(gfilters, name):
     except:
         return None, None, None, None
 
+async def get_filters(group_id):
+    mycol = mydb[str(group_id)]
 
+    texts = []
+    query = mycol.find()
+    try:
+        for file in query:
+            text = file['text']
+            texts.append(text)
+    except:
+        pass
+    return texts
+    
 async def get_gfilters(gfilters):
     mycol = mydb[str(gfilters)]
 
