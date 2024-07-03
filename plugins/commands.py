@@ -105,6 +105,11 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
+@Client.on_message(filters.command("tutorial") & filters.incoming)
+async def tutorial(client, message):
+    await message.reply_video(video="https://graph.org/file/5b67a40473cdee3f9f521.mp4", caption="HOW TO MOVIE DOWNLOAD WATCH VEDIO AND DOWNLOAD MOVIE.\n🫶🏻\n\n𝗚𝗥𝗢𝗨𝗣 𝗟𝗜𝗡𝗞 : ➠➠\nhttps://t.me/+un_DT-l-Td5iODc1\nhttps://t.me/+un_DT-l-Td5iODc1\nhttps://t.me/+un_DT-l-Td5iODc1")
+    return
+    
 @Client.on_message(filters.command('delete') & filters.user(ADMINS))
 async def delete(bot, message):
     """Delete file from database"""
